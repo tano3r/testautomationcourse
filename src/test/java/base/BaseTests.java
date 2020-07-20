@@ -1,7 +1,11 @@
 package base;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
+
+import java.util.List;
 
 public class BaseTests {
 
@@ -12,9 +16,15 @@ public class BaseTests {
         driver = new FirefoxDriver();
         driver.get("https://the-internet.herokuapp.com/");
 
-        driver.manage().window().maximize();
+        WebElement inputsLink =  driver.findElement(By.linkText("Shifting Content"));
+        inputsLink.click();
 
-        System.out.println(driver.getTitle());
+        WebElement exampleOne = driver.findElement(By.partialLinkText("Example 1"));
+        exampleOne.click();
+
+        List<WebElement> buttonMenuList = driver.findElements(By.tagName("li"));
+        System.out.println(buttonMenuList.size());
+
         driver.quit();
     }
 
