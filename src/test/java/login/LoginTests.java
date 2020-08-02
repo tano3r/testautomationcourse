@@ -25,9 +25,10 @@ public class LoginTests extends BaseTests {
 
     @Test
     public void testInvalidUsernameLogin(){
+        ConfigFileReader configFileReader = new ConfigFileReader();
         LoginPage loginPage = homePage.clickFormAuthentication();
-        loginPage.setUsername("tomsmith1");
-        loginPage.setPassword("SuperSecretPassword!");
+        loginPage.setUsername(configFileReader.getUsername() + "123");
+        loginPage.setPassword(configFileReader.getPassword());
         loginPage.clickLoginButton();
         assertTrue(loginPage.getAlertText()
                         .contains("Your username is invalid!"),
@@ -36,9 +37,10 @@ public class LoginTests extends BaseTests {
 
     @Test
     public void testInvalidPasswordLogin(){
+        ConfigFileReader configFileReader = new ConfigFileReader();
         LoginPage loginPage = homePage.clickFormAuthentication();
-        loginPage.setUsername("tomsmith");
-        loginPage.setPassword("123");
+        loginPage.setUsername(configFileReader.getUsername());
+        loginPage.setPassword(configFileReader.getPassword() + "123");
         loginPage.clickLoginButton();
         assertTrue(loginPage.getAlertText()
                         .contains("Your password is invalid!"),

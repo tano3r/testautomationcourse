@@ -21,7 +21,7 @@ public class BaseTests {
     @BeforeClass
     public void setUp(){
         configFileReader = new ConfigFileReader();
-        System.setProperty("webdriver.firefox.driver", "resources/geckodriver");
+        System.setProperty("webdriver.gecko.driver", "resources\\geckodriver.exe");
         driver = new FirefoxDriver();
         driver.get(configFileReader.getApplicationUrl());
 
