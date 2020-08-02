@@ -1,6 +1,7 @@
 package login;
 
 import base.BaseTests;
+import dataProvider.ConfigFileReader;
 import org.testng.annotations.Test;
 import pages.LoginPage;
 import pages.SecureAreaPage;
@@ -12,9 +13,10 @@ public class LoginTests extends BaseTests {
 
     @Test
     public void testSuccessfulLogin(){
+        ConfigFileReader configFileReader = new ConfigFileReader();
         LoginPage loginPage = homePage.clickFormAuthentication();
-        loginPage.setUsername("tomsmith");
-        loginPage.setPassword("SuperSecretPassword!");
+        loginPage.setUsername(configFileReader.getUsername());
+        loginPage.setPassword(configFileReader.getPassword());
         SecureAreaPage secureAreaPage = loginPage.clickLoginButton();
         assertTrue(secureAreaPage.getAlertText()
                  .contains("You logged into a secure area!"),

@@ -3,3 +3,6 @@
 /jarRepositories.xml
 /testautomationcourse.iml
 /src/dataFile.properties
+/resources
+/target
+/.idea

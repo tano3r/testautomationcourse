@@ -1,5 +1,6 @@
 package base;
 
+import dataProvider.ConfigFileReader;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -14,13 +15,15 @@ public class BaseTests {
 
     private WebDriver driver;
     protected HomePage homePage;
+    private ConfigFileReader configFileReader;
 
     //This method will run before every testclass
     @BeforeClass
     public void setUp(){
+        configFileReader = new ConfigFileReader();
         System.setProperty("webdriver.firefox.driver", "resources/geckodriver");
         driver = new FirefoxDriver();
-        driver.get("https://the-internet.herokuapp.com/");
+        driver.get(configFileReader.getApplicationUrl());
 
         homePage = new HomePage(driver);
     }
